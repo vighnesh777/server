@@ -37,7 +37,7 @@ app.post("/signin",function(req,res){
      client.close();  
      });  
      });
- res.sendFile(__dirname+"/Signin_success.html")  ;
+     res.redirect('http://localhost:3000/home');
     
 })
 
