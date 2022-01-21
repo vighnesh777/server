@@ -20,6 +20,11 @@ let cors = require('cors')
 app.use(cors())
 
 app.use(express.json());
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+    });
 const userSchema = new mongoose.Schema({
     name: {type: String, required: true, unique: true},
     gender:{type: String, required: true},
@@ -33,7 +38,7 @@ mongoose.connect(url,(err)=>{
 })
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 app.get("/",function(req,res){
-    res.send("<h1>Server Up and Running</h1>");
+    res.send("<h1>Server Up and Running as Usual</h1>");
 })
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 app.post("/add",function(req,res){
